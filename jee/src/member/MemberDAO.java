@@ -136,6 +136,7 @@ public class MemberDAO {
 	public boolean login(MemberBean member){
 		boolean loginOk = false;
 		MemberBean m = this.findById(member.getId());
+		System.out.println("m "+m.getId());
 		if(m.getPw().equals(member.getPw())){
 			loginOk = true;
 		}
