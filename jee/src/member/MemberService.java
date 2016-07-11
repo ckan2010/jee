@@ -15,9 +15,10 @@ import global.CommonService;
  */
 public interface MemberService extends CommonService{
 	public String open(MemberBean stu);
-	public String show();
+	public MemberBean show();
 	public String update(MemberBean stu);
 	public String delete(String id);
 	public MemberBean findById(String id);
 	public String login(MemberBean member);
+	public int genderCount(String gender);
 }

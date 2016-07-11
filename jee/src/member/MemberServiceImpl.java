@@ -22,8 +22,8 @@ public class MemberServiceImpl implements MemberService{
 		return (dao.insert(stu) == 1)?"회원가입 축하합니다.":"회원가입 실패";
 	}
 	@Override
-	public String show() {
-		return "";
+	public MemberBean show() {
+		return session;
 	}
 	@Override
 	public String update(MemberBean stu) {
@@ -60,5 +60,9 @@ public class MemberServiceImpl implements MemberService{
 			result = "로그인 실패";
 		}
 		return result;
+	}
+	@Override
+	public int genderCount(String gender) {
+		return dao.findByGender(gender);
 	}
 }

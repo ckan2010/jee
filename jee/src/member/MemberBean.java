@@ -119,7 +119,7 @@ public class MemberBean {
 	}
 	public String toString() {
 		return Constants.SCHOOL_NAME+" [ 성명=" + name + ", 아이디=" + id + ", 비번=****" + ", 주민번호=" + ssn + ", 등록일=" + regDate
-				+ ", 성별=" + gender + ", 나이=" + birth + "]";
+				+ ", 성별=" + gender + ", 나이=" + birth + "]\n";
 	}
 	
 	

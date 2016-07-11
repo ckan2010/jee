@@ -36,6 +36,14 @@ public class MemberControll {
 				JOptionPane.showMessageDialog(null, result);
 				break;
 			case "2":
+				MemberBean stu3 = new MemberBean();
+				String open2 = JOptionPane.showInputDialog("로그인 ID,PW");
+				String open3[] = open2.split(",");
+				stu3.setId(open3[0]);
+				stu3.setPw(open3[1]);
+				JOptionPane.showMessageDialog(null, student.login(stu3));
+				break;
+			case "3":
 				JOptionPane.showMessageDialog(null, student.show());
 				break;
 			case "4":
@@ -62,6 +70,7 @@ public class MemberControll {
 				JOptionPane.showMessageDialog(null, student.findBy(JOptionPane.showInputDialog("이름 입력")));
 				break;
 			case "14":
+				JOptionPane.showMessageDialog(null, student.genderCount(JOptionPane.showInputDialog("성별 남/여 입력"))+" 명");
 				break;
 			case "15":
 				JOptionPane.showMessageDialog(null, student.count()+" 명");

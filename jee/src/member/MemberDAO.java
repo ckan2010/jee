@@ -20,7 +20,7 @@ public class MemberDAO {
 	Connection con = null;
 	Statement stmt = null;
 	PreparedStatement pstmt = null;
-	ResultSet set = null;// executeQuery() 에서만 리턴받는 객체
+	ResultSet rs = null;// executeQuery() 에서만 리턴받는 객체
 	private static MemberDAO instance = new MemberDAO();
 
 	public static MemberDAO getInstance() {
@@ -67,10 +67,10 @@ public class MemberDAO {
 			Class.forName(Constants.ORACLE_DRIVER);
 			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = con.createStatement();
-			set = stmt.executeQuery(sql);
-			while (set.next()) {
-				MemberBean mem = new MemberBean(set.getString("NAME"), set.getString("ID"), set.getString("PW"), set.getString("SSN_ID"));
-				mem.setRegDate(set.getString("REG_DATE"));
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				MemberBean mem = new MemberBean(rs.getString("NAME"), rs.getString("ID"), rs.getString("PW"), rs.getString("SSN_ID"));
+				mem.setRegDate(rs.getString("REG_DATE"));
 				tempList.add(mem);
 			}
 		} catch (Exception e) {
@@ -86,10 +86,10 @@ public class MemberDAO {
 			Class.forName(Constants.ORACLE_DRIVER);
 			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = con.createStatement();
-			set = stmt.executeQuery(sql);
-			if (set.next()) {
-				tempBean = new MemberBean(set.getString("NAME"), set.getString("ID"), set.getString("PW"), set.getString("SSN_ID"));
-				tempBean.setRegDate(set.getString("REG_DATE"));
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				tempBean = new MemberBean(rs.getString("NAME"), rs.getString("ID"), rs.getString("PW"), rs.getString("SSN_ID"));
+				tempBean.setRegDate(rs.getString("REG_DATE"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -105,10 +105,10 @@ public class MemberDAO {
 			Class.forName(Constants.ORACLE_DRIVER);
 			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = con.createStatement();
-			set = stmt.executeQuery(sql);
-			while (set.next()) {
-				MemberBean mem = new MemberBean(set.getString("NAME"), set.getString("ID"), set.getString("PW"), set.getString("SSN_ID"));
-				mem.setRegDate(set.getString("REG_DATE"));
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				MemberBean mem = new MemberBean(rs.getString("NAME"), rs.getString("ID"), rs.getString("PW"), rs.getString("SSN_ID"));
+				mem.setRegDate(rs.getString("REG_DATE"));
 				tempList.add(mem);
 			}
 		} catch (Exception e) {
@@ -124,9 +124,9 @@ public class MemberDAO {
 			Class.forName(Constants.ORACLE_DRIVER);
 			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = con.createStatement();
-			set = stmt.executeQuery(sql);
-			if (set.next()) {
-				result = set.getInt("count");
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				result = rs.getInt("count");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -140,5 +140,26 @@ public class MemberDAO {
 			loginOk = true;
 		}
 		return loginOk;
+	}
+
+	public int findByGender(String gender) {
+		int result = 0;
+		String sql = "select count(*) count from member "
+				+ "where (('"+gender+"' = '남' and "
+				+ " substrb(ssn_id,8,1) in ('1','3','5','7')) or"
+				+ "('"+gender+"' = '여' and "
+				+ " substrb(ssn_id,8,1) in ('2','4','6','8'))) ";
+		try {
+			Class.forName(Constants.ORACLE_DRIVER);
+			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				result = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }
