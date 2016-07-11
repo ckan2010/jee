@@ -163,4 +163,22 @@ public class MemberDAO {
 		}
 		return result;
 	}
+
+	public int findId(String id) {
+		int result = 0;
+		String sql = "select count(*) count from member "
+				+ "where id = '"+id+"'";
+		try {
+			Class.forName(Constants.ORACLE_DRIVER);
+			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				result = rs.getInt("count");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }

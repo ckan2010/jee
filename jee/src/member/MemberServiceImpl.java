@@ -52,17 +52,25 @@ public class MemberServiceImpl implements MemberService{
 	}
 	public String login(MemberBean member) {
 		String result = "ID가 존재하지 않습니다.";
-		if (dao.login(member)) {
-			result = "로그인성공";
-			session = findById(member.getId());
-			accService.map();
+		if (findId(member.getId()) == 0) {
+			result = "ID가 존재하지 않습니다.";
 		} else {
-			result = "로그인 실패";
+			if (dao.login(member)) {
+				result = "로그인성공";
+				session = findById(member.getId());
+				accService.map();
+			} else {
+				result = "로그인 실패";
+			}
 		}
 		return result;
 	}
 	@Override
 	public int genderCount(String gender) {
 		return dao.findByGender(gender);
+	}
+	@Override
+	public int findId(String id) {
+		return dao.findId(id);
 	}
 }
