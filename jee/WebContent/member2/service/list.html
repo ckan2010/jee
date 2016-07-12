@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>회원검색</title>
+<link rel="stylesheet" href="../../css/member.css" />
 <style>
 table {
     font-family: arial, sans-serif;
@@ -17,15 +20,11 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
-div{border: 5px solid powderblue;width: 600px;margin: 0 auto;text-align:center;}
 </style>
-<meta charset="UTF-8">
-<title>회원검색</title>
-
 </head>
 <body>
-<div>
-	<h1>목록보기</h1> <br>
+<div class="box">
+	<h1>목록보기</h1>
 	<table>
   <tr>
     <th>ID</th>
@@ -35,31 +34,35 @@ div{border: 5px solid powderblue;width: 600px;margin: 0 auto;text-align:center;}
   </tr>
   <tr>
     <td>hong</td>
-    <td>홍길동</td>
+    <td><a href="detail.html">홍길동</a></td>
     <td>2016-07-03</td>
     <td>900101</td>
   </tr>
   <tr>
     <td>lee</td>
-    <td>이순신</td>
+    <td><a href="detail.html">이순신</a></td>
     <td>2016-06-03</td>
     <td>920201</td>
   </tr>
   <tr>
     <td>park</td>
-    <td>박지성</td>
+    <td><a href="detail.html">박지성</a></td>
     <td>2016-05-03</td>
     <td>930301</td>
   </tr>
   <tr>
     <td>kim</td>
-    <td>김유신</td>
+    <td><a href="detail.html">김유신</a></td>
     <td>2016-05-13</td>
     <td>020401</td>
   </tr>
 </table>
-		<a href="../memberController.html">멤버 홈 으로</a>
-		<a href="../../index.html">메인 홈 으로</a>
+		<a href="../member_controller.html">
+			<img src="../../img/member.jpg" alt="회원관리 홈 으로" width="30" height="30">
+		</a>
+		<a href="../../index.html">
+			<img src="../../img/home.jpg" alt="메인 홈 으로" width="30" height="30">
+		</a>
 </div>		
 </body>
 </html>
