@@ -1,13 +1,17 @@
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+String ctx = application.getContextPath();
+%>    
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>한빛 아카데미</title>
-
+	<meta charset="UTF-8" />
+	<title>한빛 아카데미</title>
 <style>
 #header {
-    background-color:black;
-    color:white;
+    background-color:white;
+    color:black;
     text-align:center;
     padding:5px;
 }
@@ -48,19 +52,18 @@
 #nav .active{
 	background-color: #4CAF50;
 }
-</style>
+</style>	
 </head>
 <body>
-
-<div id="header">
+	<div id="header">
 <h1>학생 관리 시스템[Student Management System]</h1>
 </div>
 <div id="nav">
 <ul>
-  <li class="active"><a href="member/member_controller.html">회원관리</a></li>
-  <li><a href="grade/grade_controller.html">성적관리</a></li>
-  <li><a href="account/account_controller.html">계좌관리</a></li>
-  <li><a href="global/school_info.html">학교소계</a></li>
+  <li class="active"><a href="<%=ctx %>/member/member_controller.jsp">회원관리</a></li>
+  <li><a href="#">성적관리</a></li>
+  <li><a href="#">계좌관리</a></li>
+  <li><a href="school_info.jsp">학교소계</a></li>
 </div>
 
 <div id="section">
@@ -72,8 +75,7 @@ its history going back to its founding by the Romans, who named it Londinium.</p
 </div>
 
 <div id="footer">
-Copyright � W3Schools.com
+Copyright GOF Team
 </div>
-
 </body>
 </html>
